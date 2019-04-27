@@ -1,0 +1,111 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Sheets</title>
+
+   
+      <ul id="list" class="list"></ul>
+  </head>
+  <body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+  <script type='text/javascript'>    
+    var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1pQvhlXsZmS23fFrt-3Ua37mJ0oCb1a33oIvszhqNH0g/pubhtml';
+
+    function init() {
+      Tabletop.init( { key: publicSpreadsheetUrl,
+                       callback: showInfo,
+                       simpleSheet: true } )
+    }
+
+    function showInfo(data, tabletop) {
+      alert('Successfully processed!')
+      console.log(data);
+      var Fijo1,Mobile,Fijo2,Nombre,Fijo3,Pagina,Fijo4,Aunto,Fijo5,Producto,Fijo6,Fijo7;
+      var htmlCode=' ';
+
+      var url=[''];
+
+
+      var list = document.getElementById('list');
+
+      for (var i = 0;i<data.length; i++) {
+        Fijo1 = data[i].Fijo1;
+        Mobile= data[i].Mobile;
+        Fijo2 = data[i].Fijo2;
+        Nombre = data[i].Nombre;
+        Fijo3= data[i].Fijo3;
+        Pagina = data[i].Pagina;
+        Fijo4 = data[i].Fijo4;
+        Aunto = data[i].Aunto;
+        Fijo5 = data[i].Fijo5;
+        Producto = data[i].Producto;
+
+        Fijo6 = data[i].Fijo6;
+        Fijo7 = data[i].Fijo7;
+
+
+
+        url.push(Fijo1+Mobile+Fijo2+Nombre+Fijo3+Pagina+Fijo4+Aunto+Fijo5+Producto+Fijo6);
+        htmlCode=Fijo1+' '+Mobile+' '+Fijo2+' '+Nombre+' '+Fijo3+' '+Pagina+' '+Fijo4+' '+Aunto+' '+Fijo5+' '+Producto+' '+Fijo6+' '+Fijo7;
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(htmlCode));
+        list.appendChild(li);
+         
+      }
+
+       
+       //list.innerHTML=htmlCode;
+
+      //  document.getElementById("list").addEventListener("click",function(e) {
+      //     // e.target is our targetted element.
+      //                 // try doing console.log(e.target.nodeName), it will result LI
+      //     if(e.target && e.target.nodeName == "LI") {
+      //         console.log(e.target.index);
+      //     }
+      // });
+
+      var val;
+      var item = document.getElementsByTagName("LI");
+      for (var i = 0; i <item.length; i++) {
+        console.log("added");
+        item[i].addEventListener("click", function(){
+         
+
+           var position = 0;
+          var currentNode = this;
+          var firstNode = currentNode.parentNode.firstChild;
+          while(firstNode != currentNode) {
+              position++;
+              currentNode = currentNode.previousSibling;
+          }
+
+          val = position;
+          itemDone();
+        });
+      }
+
+      function itemDone(){
+        window.open(url[val],"_blank")
+        console.log(url[val]);
+      }
+
+       // list = document.getElementById('list');
+       // console.log(list.length);
+
+       // for (var j = 0; j < list.length; j++) {
+       //      console.log("loop");
+       //      list[j].onClick = function(){
+       //        console.log("clicked");
+       //        window.open(url[j],"_blank");
+       //      }
+       //     // list[j].addEventListener("click",function(){
+       //     //    console.log("clicked");
+       //     //  // window.open(url[i],"_blank")
+       //     // });
+       //   }
+    }
+
+    window.addEventListener('DOMContentLoaded', init)
+  </script>
+  </body>
+  </html>

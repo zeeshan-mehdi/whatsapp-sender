@@ -1,0 +1,12 @@
+{
+    "name": "whatsapp Sender",
+    "version": "1.0",
+    "description": "Send Messages using whatsapp!",
+
+     "permissions": ["tabs","storage"],
+    "browser_action": {
+      "default_icon": "download.jpg",
+      "default_popup": "popup.html"
+    },
+    "manifest_version": 2
+  }
